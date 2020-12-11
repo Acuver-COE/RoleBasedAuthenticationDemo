@@ -18,6 +18,8 @@ import java.util.List;
 @Document(collection = "users")
 public class User {
     @Id
+    private String id;
+
     private String acuverId;
 
     private String name;
@@ -29,5 +31,7 @@ public class User {
     private String confirmPassword;
 
     private List<Role> roles;
+
+    private String tenantId;
 
 }

@@ -16,5 +16,5 @@ public class Role {
     @Id
     private String id;
     Rolevalues name;
-
+    private String tenantId;
 }

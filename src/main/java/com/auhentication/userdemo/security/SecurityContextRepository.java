@@ -13,6 +13,7 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class SecurityContextRepository implements ServerSecurityContextRepository {
+    private static final String jwtTokenCookieName = "JWT-TOKEN";
 
     private AuthenticationManager authenticationManager;
     SecurityContextRepository(AuthenticationManager authenticationManager){
@@ -21,6 +22,7 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
 
     @Override
     public Mono<Void> save(ServerWebExchange serverWebExchange, SecurityContext securityContext) {
+
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -28,7 +30,6 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
     public Mono<SecurityContext> load(ServerWebExchange serverWebExchange) {
         ServerHttpRequest request = serverWebExchange.getRequest();
         String authHeader = request.getHeaders().getFirst( HttpHeaders.AUTHORIZATION);
-
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String authToken = authHeader.substring(7);
             Authentication auth = new UsernamePasswordAuthenticationToken (authToken, authToken);

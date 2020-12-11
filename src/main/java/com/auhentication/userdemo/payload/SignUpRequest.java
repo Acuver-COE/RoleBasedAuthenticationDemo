@@ -1,6 +1,7 @@
 package com.auhentication.userdemo.payload;
 
 import com.auhentication.userdemo.config.StringConstants;
+import com.auhentication.userdemo.model.Role;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,4 +36,8 @@ public class SignUpRequest {
 
     @NotEmpty(message = "Confirm password cannot be empty")
     private String confirmPassword;
+
+    private List<Role> roles;
+
+    private String tenantId;
 }
